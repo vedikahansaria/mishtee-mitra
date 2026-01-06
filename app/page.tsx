@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, CSSProperties } from 'react';
 
 export default function DeliveryDashboard() {
   const [isOnline, setIsOnline] = useState(true);
 
-  // --- Styles ---
-  const styles = {
+  // FIX: Explicitly tell TypeScript this contains valid CSS Properties
+  const styles: { [key: string]: CSSProperties } = {
     container: {
       display: 'flex',
       flexDirection: 'column',
@@ -60,7 +60,7 @@ export default function DeliveryDashboard() {
       backgroundColor: '#28a745',
       borderRadius: '50%',
       marginRight: '10px',
-      // Animation is handled via the <style> tag below
+      // We use a type assertion here because 'animation' is valid in CSS but sometimes strict in React TS
       animation: 'pulse 1.5s infinite',
     },
     card: {
@@ -120,6 +120,7 @@ export default function DeliveryDashboard() {
         
         {/* Header Section */}
         <header style={styles.header}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src="https://raw.githubusercontent.com/sudhir-voleti/mishtee-magic/main/mishTee_logo.png" 
             alt="mishTee Logo" 
